@@ -1,0 +1,32 @@
+[user]
+	email = rogercoll@protonmail.com
+	name = Roger Coll
+[core]
+	editor = vim
+[url "git@github.com:"]
+    insteadOf = https://github.com/
+[alias]
+    st = status
+    co = checkout
+    ci = commit
+    df = diff
+    br = branch
+    glo = log --graph --oneline --decorate --all
+    gloo = log --graph --abbrev-commit --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+    l = log --name-status
+    purge-branches = !sh -c 'git branch --merged | grep -v "^*" | xargs git branch -d'
+[color]
+	branch = auto
+	diff = auto
+	status = auto
+        showbranch = auto
+	ui = true
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+[color "status"]
+	added = green bold
+	changed = yellow bold
+	untracked = red
