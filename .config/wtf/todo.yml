@@ -1,0 +1,13 @@
+items:
+- checked: true
+  checkedicon: X
+  date: null
+  tags: []
+  text: Sync S3 bucket
+  uncheckedicon: ' '
+- checked: true
+  checkedicon: X
+  date: null
+  tags: []
+  text: Delete Instances
+  uncheckedicon: ' '
