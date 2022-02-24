@@ -6,6 +6,7 @@ Plug 'rust-lang/rust.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'mtdl9/vim-log-highlighting'
 
 call plug#end()
 
