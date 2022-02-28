@@ -33,6 +33,10 @@ set smartcase
 au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
+" file format
+set nofixendofline
+set fileformat=unix
+
 " Habits
 :let mapleader = ","
 :imap jj <Esc>
