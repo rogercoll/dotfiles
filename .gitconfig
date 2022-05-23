@@ -1,10 +1,10 @@
 [user]
 	email = rogercoll@protonmail.com
 	name = Roger Coll
+	signingkey = XXXX
 [core]
 	editor = vim
-[url "git@github.com:"]
-    insteadOf = https://github.com/
+	excludesFile = ~/.global_gitignore
 [alias]
     st = status
     co = checkout
@@ -30,3 +30,5 @@
 	added = green bold
 	changed = yellow bold
 	untracked = red
+[commit]
+	gpgsign = true
