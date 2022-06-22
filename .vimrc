@@ -10,6 +10,9 @@ Plug 'mtdl9/vim-log-highlighting'
 
 call plug#end()
 
+" Set ctrlp search path to current directory
+let g:ctrlp_working_path_mode = 'c'
+
 " Front
 syntax on
 set background=dark
