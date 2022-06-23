@@ -12,6 +12,8 @@ call plug#end()
 
 " Set ctrlp search path to current directory
 let g:ctrlp_working_path_mode = 'c'
+" Run rust formater on save
+let g:rustfmt_autosave = 1
 
 " Front
 syntax on
