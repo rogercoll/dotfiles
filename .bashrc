@@ -26,3 +26,6 @@
  alias myip='curl ifconfig.co'
  alias weather='curl wttr.in/barcelona?1'
  alias crypto='ssh cointop.sh'
+
+#Simple color prompt
+export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 3)\]\u\[$(tput setaf 2)\]@\[$(tput setaf 4)\]\h \[$(tput setaf 5)\]\W\[$(tput setaf 1)\]]\[$(tput setaf 7)\]\\$ \[$(tput sgr0)\]"
