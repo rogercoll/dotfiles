@@ -10,8 +10,9 @@ Plug 'mtdl9/vim-log-highlighting'
 
 call plug#end()
 
-" Set ctrlp search path to current directory
-let g:ctrlp_working_path_mode = 'c'
+" Set ctrlp custom config
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_custom_ignore = '\v[\/]target$'
 " Run rust formater on save
 let g:rustfmt_autosave = 1
 
