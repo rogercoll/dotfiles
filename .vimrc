@@ -7,6 +7,8 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'mtdl9/vim-log-highlighting'
+Plug 'itchyny/lightline.vim'
+
 
 call plug#end()
 
@@ -46,3 +48,26 @@ set fileformat=unix
 " Habits
 :let mapleader = ","
 :imap jj <Esc>
+
+
+
+
+
+
+" Lightline
+let g:lightline = {
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'readonly', 'filename', 'modified' ] ],
+      \   'right': [ [ 'lineinfo' ],
+      \              [ 'percent' ],
+      \              [ 'fileencoding', 'filetype' ] ],
+      \ },
+      \ 'component_function': {
+      \   'filename': 'LightlineFilename'
+      \ },
+      \ }
+function! LightlineFilename()
+  return expand('%:t') !=# '' ? @% : '[No Name]'
+endfunction
+set laststatus=2
