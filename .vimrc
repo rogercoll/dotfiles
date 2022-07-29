@@ -8,6 +8,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'mtdl9/vim-log-highlighting'
 Plug 'itchyny/lightline.vim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 
 call plug#end()
