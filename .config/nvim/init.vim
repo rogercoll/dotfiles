@@ -47,7 +47,8 @@ Plug 'rhysd/vim-clang-format'
 Plug 'fatih/vim-go'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
-"
+Plug 'tpope/vim-commentary'
+
 " Adds extra functionality over rust analyzer
 Plug 'simrat39/rust-tools.nvim'
 
