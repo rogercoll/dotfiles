@@ -5,6 +5,7 @@ source ./install-deps.sh
 install_ripgrep
 install_fd
 install_bat
+install_neovim
 
 echo "Installing programming languages..."
 source ./install-langs.sh

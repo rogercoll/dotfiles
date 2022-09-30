@@ -43,3 +43,20 @@ install_bat() {
 		fi
 	fi
 }
+
+install_neovim() {
+	if [ -z "$(command -v nvim)" ]; then
+		platform=$(uname);
+		if [[ $platform == 'Linux' ]]; then
+			if [[ -f /etc/redhat-release ]]; then
+				sudo dnf copr enable agriffis/neovim-nightly
+				sudo dnf install -y neovim python3-neovim
+			fi
+			if [[ -f /etc/debian_version ]]; then
+				sudo apt-get install neovim
+			fi
+		elif [[ $platform == 'Darwin' ]]; then
+			brew install neovim
+		fi
+	fi
+}
