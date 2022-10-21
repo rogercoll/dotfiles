@@ -7,6 +7,7 @@ x11-apps/xinit
 
 # Terminal
 x11-terms/rxvt-unicode
+x11-terms/alacritty
 
 # Hides the mouse cursor after X seconds of inactivity
 x11-misc/unclutter
