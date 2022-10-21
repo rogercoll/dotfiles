@@ -42,7 +42,7 @@ media-libs/libv4l
 
 # Custom
 app-admin/sudo
-app-editors/vim
+app-editors/neovim
 sys-process/htop
 dev-vcs/git
 www-client/firefox-bin
