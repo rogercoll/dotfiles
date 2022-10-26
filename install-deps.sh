@@ -60,3 +60,14 @@ install_neovim() {
 		fi
 	fi
 }
+
+install_termshark() {
+	if [ -z "$(command -v termshark)" ]; then
+		platform=$(uname);
+		if [[ $platform == 'Linux' ]]; then
+			echo "TODO"
+		elif [[ $platform == 'Darwin' ]]; then
+			brew install termshark
+		fi
+	fi
+}
