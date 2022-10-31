@@ -474,8 +474,8 @@ autocmd BufRead *.tex set filetype=tex
 autocmd BufRead *.trm set filetype=c
 autocmd BufRead *.xlsx.axlsx set filetype=ruby
 
-" Script plugins
-autocmd Filetype html,xml,xsl,php source ~/.config/nvim/scripts/closetag.vim
+" Autoload skeleton files
+autocmd BufNewFile *.sh 0r ~/.config/nvim/skeletons/bash.sh
 
 " =============================================================================
 " # Footer
