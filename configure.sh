@@ -1,14 +1,36 @@
 #!/bin/bash
 
-echo "Installing tools and dependencies..."
-source ./install-deps.sh
-install_ripgrep
-install_fd
-install_bat
-install_neovim
-install_termshark
+configure_dotfiles() {
+	local current_dir=`pwd`
+
+	echo "Setting bash profile"
+	[ ! -e $HOME/.bashrc ] && ln -sf $current_dir/.bashrc $HOME/.bashrc
+
+	echo "Setting git profile"
+	[ ! -e $HOME/.gitconfig ] && ln -sf $current_dir/.gitconfig $HOME/.gitconfig
+	[ ! -e $HOME/.global_gitignore ] && ln -sf $current_dir/.global_gitignore $HOME/.global_gitignore
+
+	echo "Configuring neovim"
+	cp -a $current_dir/.config/nvim $HOME/.config
+	ln -sf $current_dir/.config/nvim/init.vim $HOME/.config/nvim/init.vim
+	nvim -c "PlugInstall"
+}
+
 
 echo "Installing programming languages..."
 source ./install-langs.sh
 install_go
 install_rust
+
+echo "Installing tools and dependencies..."
+source ./install-deps.sh
+install_basics
+install_ripgrep
+install_fd
+install_bat
+install_neovim
+install_termshark
+install_difftastic
+
+
+configure_dotfiles

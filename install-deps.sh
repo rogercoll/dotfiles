@@ -1,3 +1,15 @@
+install_basics() {
+	if [[ $platform == 'Linux' ]]; then
+		if [[ -f /etc/redhat-release ]]; then
+			sudo dnf install make automake gcc gcc-c++ kernel-devel
+		elif [[ -f /etc/debian_version ]]; then
+			echo "TODO install_basics"
+		fi
+	elif [[ $platform == 'Darwin' ]]; then
+		echo "TODO install_basics"
+	fi
+}
+
 install_ripgrep() {
 	if [ -z "$(command -v rg)" ]; then
 		platform=$(uname);
@@ -40,6 +52,17 @@ install_bat() {
 			fi
 		elif [[ $platform == 'Darwin' ]]; then
 			brew install bat
+		fi
+	fi
+}
+
+install_difftastic() {
+	if [ -z "$(command -v difft)" ]; then
+		platform=$(uname);
+		if [[ $platform == 'Linux' ]]; then
+			cargo install difftastic
+		elif [[ $platform == 'Darwin' ]]; then
+			brew install difftastic
 		fi
 	fi
 }

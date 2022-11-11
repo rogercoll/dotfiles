@@ -8,4 +8,5 @@ install_rust() {
 	if [ -z "$(command -v cargo)" ]; then
 		curl https://sh.rustup.rs -sSf | sh
 	fi
+	source ~/.cargo/env
 }

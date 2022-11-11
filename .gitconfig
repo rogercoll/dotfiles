@@ -32,3 +32,5 @@
 	untracked = red
 [commit]
 	gpgsign = true
+[diff]
+	external = ~/.cargo/bin/difft
