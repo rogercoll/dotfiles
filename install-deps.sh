@@ -1,7 +1,8 @@
 install_basics() {
+	platform=$(uname);
 	if [[ $platform == 'Linux' ]]; then
 		if [[ -f /etc/redhat-release ]]; then
-			sudo dnf install make automake gcc gcc-c++ kernel-devel
+			sudo dnf install make automake gcc gcc-c++ kernel-devel libXrandr-devel slock libXinerama-devel
 		elif [[ -f /etc/debian_version ]]; then
 			echo "TODO install_basics"
 		fi

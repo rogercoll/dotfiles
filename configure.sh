@@ -33,4 +33,12 @@ install_termshark
 install_difftastic
 
 
+echo "Installing suckless tools..."
+source ./install-suckless.sh
+install_slock
+install_dmenu
+
+
+
+echo "Configuring dotfiles..."
 configure_dotfiles
