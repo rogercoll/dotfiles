@@ -3,14 +3,14 @@
 configure_dotfiles() {
 	local current_dir=`pwd`
 
-	echo "Setting bash profile"
-	[ ! -e $HOME/.bashrc ] && ln -sf $current_dir/.bashrc $HOME/.bashrc
+	echo "Setting bash profile, this will override your bash profile"
+	ln -sf $current_dir/.bashrc $HOME/.bashrc
 
-	echo "Setting git profile"
-	[ ! -e $HOME/.gitconfig ] && ln -sf $current_dir/.gitconfig $HOME/.gitconfig
-	[ ! -e $HOME/.global_gitignore ] && ln -sf $current_dir/.global_gitignore $HOME/.global_gitignore
+	echo "Setting git profile, this will override your git profile"
+	ln -sf $current_dir/.gitconfig $HOME/.gitconfig
+	ln -sf $current_dir/.global_gitignore $HOME/.global_gitignore
 
-	echo "Configuring neovim"
+	echo "Configuring neovim, , this will override your neovim profile"
 	cp -a $current_dir/.config/nvim $HOME/.config
 	ln -sf $current_dir/.config/nvim/init.vim $HOME/.config/nvim/init.vim
 	nvim -c "PlugInstall"
