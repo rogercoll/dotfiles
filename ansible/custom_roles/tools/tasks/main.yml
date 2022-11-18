@@ -1,0 +1,9 @@
+---
+# tasks file for tools
+
+- name: Install/Upgrade tools RedHat distribution
+  ansible.builtin.dnf:
+    name: "{{ item }}"
+    state: latest
+  loop: "{{ dnf_packages }}"
+  when: ansible_facts['os_family'] == "RedHat"

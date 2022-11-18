@@ -1,0 +1,20 @@
+---
+# defaults file for tools
+dnf_packages:
+  - bat
+  - ripgrep
+  - fd-find
+  - hyperfine
+  - htop
+
+
+brew_pacakges:
+  - bat
+  - ripgrep
+  - neovim
+  - termshark
+  - bat
+  - htop
+
+cargo_packages:
+  - difftastic

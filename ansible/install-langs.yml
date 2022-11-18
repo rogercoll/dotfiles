@@ -1,0 +1,16 @@
+# myplaybook.yml
+---
+- hosts: webservers
+  become: true
+  roles:
+    - role: golang
+      vars:
+        go_install_clean: false
+    - role: rust
+      vars:
+        rust_update: true
+        rust_install_clean: true
+        fubarhouse_user: neck
+        fubarhouse_user_dir: /home/neck
+        cargo_items:
+          - name: difftastic
