@@ -6,6 +6,12 @@ dnf_packages:
   - fd-find
   - hyperfine
   - htop
+  - alacritty
+  - firefox
+  - podman
+  - podman-compose
+  - tmux
+  - keepassxc
 
 
 brew_pacakges:
@@ -15,6 +21,9 @@ brew_pacakges:
   - termshark
   - bat
   - htop
+  - alacritty
+  - neovim
+  - tmux
 
 cargo_packages:
   - difftastic

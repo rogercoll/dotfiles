@@ -1,0 +1,21 @@
+---
+# defaults file for tools
+dnf_packages:
+  - make
+  - automake
+  - gcc
+  - gcc-c++
+  - libXi
+  - libXrandr-devel
+  - libXft-devel
+  - libXinerama-devel
+  - xsetroot
+  - xorg-x11-xinit
+  - glx-utils
+  - xorg-x11-server-Xorg
+  - xorg-x11-xauth
+  - xrandr
+
+dmenu_repository: https://git.suckless.org/dmenu
+dwm_repository: https://github.com/rogercoll/dwm.git
+slstaus_repository: https://github.com/rogercoll/slstatus.git

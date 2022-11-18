@@ -1,0 +1,10 @@
+- name: Clone dmenu repository
+  ansible.builtin.git:
+    repo: "{{ dmenu_repository }}"
+    dest: "{{ ansible_env.HOME }}/.config/dmenu"
+    clone: yes
+    update: no
+
+- name: Install dmenu
+  become: true
+  shell: "cd {{ ansible_env.HOME }}/.config/dmenu && make clean install"
