@@ -1,9 +1,11 @@
 ---
 # defaults file for tools
 dnf_packages:
+  - fd-find
+
+all_packages:
   - bat
   - ripgrep
-  - fd-find
   - hyperfine
   - htop
   - alacritty
@@ -12,18 +14,14 @@ dnf_packages:
   - podman-compose
   - tmux
   - keepassxc
+  - fzf
 
+pacman_packages:
+  - fd
 
 brew_pacakges:
-  - bat
-  - ripgrep
-  - neovim
   - termshark
-  - bat
-  - htop
-  - alacritty
-  - neovim
-  - tmux
+  - fd
 
 cargo_packages:
   - difftastic

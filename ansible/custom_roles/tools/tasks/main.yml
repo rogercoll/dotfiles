@@ -7,3 +7,16 @@
     state: latest
   loop: "{{ dnf_packages }}"
   when: ansible_facts['os_family'] == "RedHat"
+
+- name: Install/Upgrade tools ArchLinux distribution
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: latest
+  loop: "{{ pacman_packages }}"
+  when: ansible_facts['os_family'] == "Archlinux"
+
+- name: Install/Upgrade using agnostic package module
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: latest
+  loop: "{{ all_packages }}"
