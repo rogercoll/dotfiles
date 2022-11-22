@@ -37,4 +37,7 @@ export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 3)\]\u\[$(tput se
 export SUDO_EDITOR="vim"
 . "$HOME/.cargo/env"
 
+# Load git bash autocompletition
+source /usr/share/bash-completion/completions/git
+
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
