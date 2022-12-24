@@ -1,0 +1,2 @@
+require("neck")
+print("hello")
