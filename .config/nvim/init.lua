@@ -1,2 +1,1 @@
 require("neck")
-print("hello")
