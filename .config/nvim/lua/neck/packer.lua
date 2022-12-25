@@ -12,6 +12,10 @@ return require('packer').startup(function(use)
 	  requires = { {'nvim-lua/plenary.nvim'} }
   }
 
+  -- highlight yanked region
+  use 'machakann/vim-highlightedyank'
+
+  -- colorscheme
   use({
 	    'ellisonleao/gruvbox.nvim',
 	    as = 'gruvbox',
@@ -19,6 +23,15 @@ return require('packer').startup(function(use)
 		vim.cmd('colorscheme gruvbox')
 	    end
   })
+
+  -- Syntactic language support
+  use 'cespare/vim-toml'
+  use 'stephpy/vim-yaml'
+  use 'rust-lang/rust.vim'
+  use 'fatih/vim-go'
+  use 'godlygeek/tabular'
+  use 'plasticboy/vim-markdown'
+  use 'tpope/vim-commentary'
 
   use ('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
   use ('nvim-treesitter/playground')
