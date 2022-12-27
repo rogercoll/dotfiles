@@ -7,15 +7,18 @@ return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
+  -- Files and tabs helpers
   use {
 	  'nvim-telescope/telescope.nvim', tag = '0.1.0',
 	  requires = { {'nvim-lua/plenary.nvim'} }
   }
+  use 'nvim-tree/nvim-web-devicons'
+  use {'romgrk/barbar.nvim', wants = 'nvim-web-devicons'}
 
-  -- highlight yanked region
+  -- Highlight yanked region
   use 'machakann/vim-highlightedyank'
 
-  -- colorscheme
+  -- Colorscheme
   use {
     'navarasu/onedark.nvim',
     lazy = false,
