@@ -16,13 +16,14 @@ return require('packer').startup(function(use)
   use 'machakann/vim-highlightedyank'
 
   -- colorscheme
-  use({
-	    'ellisonleao/gruvbox.nvim',
-	    as = 'gruvbox',
-	    config = function()
-		vim.cmd('colorscheme gruvbox')
-	    end
-  })
+  use {
+    'navarasu/onedark.nvim',
+    lazy = false,
+    config = function()
+      require('onedark').setup({ style = 'warmer' })
+      require('onedark').load()
+    end,
+  }
 
   -- Syntactic language support
   use 'cespare/vim-toml'
@@ -35,9 +36,11 @@ return require('packer').startup(function(use)
 
   use ('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
   use ('nvim-treesitter/playground')
+  use ('eckon/treesitter-current-functions')
   use ('mbbill/undotree')
   use ('tpope/vim-fugitive')
 
+  -- LSP plugins
   use {
 	  'VonHeikemen/lsp-zero.nvim',
 	  requires = {
