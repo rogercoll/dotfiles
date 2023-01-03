@@ -3,6 +3,9 @@ vim.g.mapleader = " "
 -- Explorer key mapping in normal mode (n)
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
+-- Quick save
+vim.keymap.set("n", "<leader>w", ":w<CR>")
+
 -- Preserve last copy after replace
 vim.keymap.set("x", "<leader>p", "\"_dP")
 
