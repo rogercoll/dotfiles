@@ -18,6 +18,9 @@ return require('packer').startup(function(use)
   -- Highlight yanked region
   use 'machakann/vim-highlightedyank'
 
+  -- Trailing spaces
+  use 'ntpeters/vim-better-whitespace'
+
   -- Colorscheme
   use {
     'navarasu/onedark.nvim',
