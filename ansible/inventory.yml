@@ -1,2 +1,0 @@
-[webservers]
-localhost ansible_user=neck ansible_connection=local
