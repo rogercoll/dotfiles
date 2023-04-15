@@ -1,4 +1,0 @@
----
-- hosts: webservers
-  roles:
-    - role: window_interface

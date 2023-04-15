@@ -1,5 +1,0 @@
----
-- hosts: webservers
-  become: true
-  roles:
-    - role: tools
