@@ -15,7 +15,7 @@ configure_dotfiles() {
 
 	echo "Setting alacritty configuration file"
     mkdir -p $HOME/.config/alacritty
-	ln -sf $current_dir/.config/alacritty.yml $HOME/.config/alacritty/alacritty.yml
+	ln -sf $current_dir/.config/alacritty/alacritty.yml $HOME/.config/alacritty/alacritty.yml
 }
 
 configure_neovim() {
