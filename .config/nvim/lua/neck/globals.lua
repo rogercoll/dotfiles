@@ -1,11 +1,10 @@
+-- Remap leader
 vim.g.mapleader = " "
 
 
 -- Keymaps for better default experience
-
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
-
 -- Explorer key mapping in normal mode (n)
 vim.keymap.set("n", "<leader>ex", vim.cmd.Ex)
 
@@ -39,3 +38,11 @@ vim.opt.scrolloff = 8
 vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = "80"
+
+
+
+-- Autoload bash skeleton
+vim.api.nvim_command('autocmd BufNewFile *.sh 0r ~/.config/nvim/skeletons/bash.sh')
+
+-- Detect markdown
+vim.api.nvim_command('autocmd BufRead *.md set filetype=markdown')
