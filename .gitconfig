@@ -1,10 +1,11 @@
 [user]
-	email = rogercoll@protonmail.com
-	name = Roger Coll
-	signingkey = XXXX
+    email = rogercoll@protonmail.com
+    name = Roger Coll
+    signingkey = XXXX
 [core]
-	editor = vim
-	excludesFile = ~/.global_gitignore
+    editor = vim
+    excludesFile = ~/.global_gitignore
+    hooksPath = ~/.global_githooks
 [alias]
     st = status
     co = checkout
@@ -16,21 +17,19 @@
     l = log --name-status
     purge-branches = !sh -c 'git branch --merged | grep -v "^*" | xargs git branch -d'
 [color]
-	branch = auto
-	diff = auto
-	status = auto
-        showbranch = auto
-	ui = true
+    branch = auto
+    diff = auto
+    status = auto
+    showbranch = auto
+    ui = true
 [color "diff"]
-	meta = yellow bold
-	frag = magenta bold
-	old = red bold
-	new = green bold
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
 [color "status"]
-	added = green bold
-	changed = yellow bold
-	untracked = red
+    added = green bold
+    changed = yellow bold
+    untracked = red
 [commit]
-	gpgsign = true
-[diff]
-	external = ~/.cargo/bin/difft
+    gpgsign = true
