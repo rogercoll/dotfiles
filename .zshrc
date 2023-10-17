@@ -1,8 +1,3 @@
-# History {{{
-# history env vars (man zshparam)
-HISTSIZE=10000      # max entries for the history file
-SAVEHIST=$HISTSIZE  # max entries for any given zsh session
-
 # history options (man zshoptions)
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
@@ -12,6 +7,11 @@ setopt HIST_REDUCE_BLANKS
 setopt HIST_SAVE_NO_DUPS
 setopt INC_APPEND_HISTORY
 setopt SHARE_HISTORY
+
+# Completion {{{
+# https://thevaluable.dev/zsh-completion-guide-examples/
+autoload -U compinit; compinit
+
 
 # Prompt {{{
 function git_branch_name()
@@ -34,6 +34,7 @@ function git_branch_name()
 # $(git_branch_name) = git branch name if any
 # $ = literal '$'
 # %(?.<success>.<failed>) = ternary conditional for the last command
+setopt prompt_subst
 PROMPT='%F{098}%2/ %F{172}$(git_branch_name) %(?.%F{031}.%F{174})$ %F{reset}'
 # }}}
 
@@ -44,23 +45,12 @@ HISTEDIT=$EDITOR
 MANWIDTH=80
 # }}}
 
-# Misc aliases {{{
-# prevent cp/mv from overwriting existing files
-alias cp='cp -i'
-alias mv='mv -i'
-alias cat="bat --style header-filesize,header-filename"
-alias ls='ls --color'
-
-alias dirs='fd -td' # find . -type d -not -name .
-alias reload='. ~/.zshrc'
-
-#Addition alias
-alias myip='curl ifconfig.co'
-alias weather='curl wttr.in/barcelona?1'
-alias crypto='ssh cointop.sh'
-# }}}
 
 
+
+# +-----------+
+# | FUNCTIONS |
+# +-----------+
 
 # Vim / Neovim {{{
 # See: https://github.com/fallwith/bootstrap/blob/0cef51d610f0118c879cc6e0d0de0d37bdab393c/dots/.zshrc#L329
@@ -97,14 +87,27 @@ function nvim_launch {
   fi
 }
 
-alias nvim=nvim_launch
-alias n=nvim_launch
-alias vi=nvim_launch
-alias vim=nvim_launch
 # }}}
 
-# Go {{{
-GOPATH=~/.go
-PATH=$GOPATH/bin:$PATH
-alias got='go test -v ./...'
-# }}}
+
+# which process is using a port
+function port {
+  # alias port='sudo lsof -n -i | grep '
+  p=$1
+  if [ -z "$p" ]; then
+    echo "port() - determine which process is using a port"
+    echo "Usage: port <port number>"
+    return
+  fi
+  lsof -i :$p
+}
+
+
+
+
+# +---------+
+# | ALIASES |
+# +---------+
+# Some alias depend on functions
+
+source $DOTFILES/aliases/aliases
