@@ -19,6 +19,19 @@ autoload -U compinit; compinit
 fpath=($DOTFILES/zsh/prompt $fpath)
 source $DOTFILES/zsh/prompt/prompt_purification_setup
 
+# +------------+
+# | COMPLETION |
+# +------------+
+
+source $DOTFILES/zsh/completion.zsh
+
+# +-----+
+# | FZF |
+# +-----+
+
+if [ $(command -v "fzf") ]; then
+    source $DOTFILES/zsh/fzf.zsh
+fi
 
 # +-----------+
 # | FUNCTIONS |
