@@ -38,14 +38,6 @@ setopt prompt_subst
 PROMPT='%F{098}%2/ %F{172}$(git_branch_name) %(?.%F{031}.%F{174})$ %F{reset}'
 # }}}
 
-# Misc config / env vars {{{
-VISUAL=nvim
-EDITOR=$VISUAL
-HISTEDIT=$EDITOR
-MANWIDTH=80
-# }}}
-
-
 
 
 # +-----------+
@@ -110,4 +102,4 @@ function port {
 # +---------+
 # Some alias depend on functions
 
-source $DOTFILES/aliases/aliases
+source $DOTFILES/zsh/aliases/aliases
