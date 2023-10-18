@@ -8,10 +8,6 @@ setopt HIST_SAVE_NO_DUPS
 setopt INC_APPEND_HISTORY
 setopt SHARE_HISTORY
 
-# Completion {{{
-# https://thevaluable.dev/zsh-completion-guide-examples/
-autoload -U compinit; compinit
-
 # +--------+
 # | PROMPT |
 # +--------+
