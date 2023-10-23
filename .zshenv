@@ -21,6 +21,9 @@ export MANPAGER='nvim +Man!'
 export GOPATH="$HOME/.go"
 export GOBIN="$HOME/.go/bin"
 
+# rust
+. "$HOME/.cargo/env"
+
 
 # PATH
 export PATH="$GOBIN:$PATH"              # GOBIN 
