@@ -48,3 +48,49 @@ function port {
   lsof -i :$p
 }
 
+
+
+# Say you have a process who spawns processes, how much vmrss memories you using?
+function vmrss() {
+    if [ -z "$1" ]; then
+      echo "vmrss() - determine how much resident virtual memory a process is using"
+      echo "Usage: vmrss <pid>"
+      return
+    fi
+
+    declare -a arr
+    arr=("$1" 0)
+    total=0
+
+    while [[ ${#arr[@]} -gt 0 ]]; do
+
+        # Get the last two elements
+        local space=${arr[-1]}
+        local pid=${arr[-2]}
+
+        # Remove the last two elements
+        arr=("${arr[@]:1:${#arr[@]}-2}")
+
+        [[ -d "/proc/$pid" ]] || continue
+
+        local mem=$(grep --exclude-dir={.bzr,CVS,.git,.hg,.svn,.idea,.tox VmRSS /proc/$pid/status \
+          | grep $GREP_OPTS -o '[0-9]\+' \
+          | awk '{print $1/1024}')
+        # Add decimals to total
+        total=$(echo $mem+$total | bc)
+
+        # name of process
+        local name=$(ps -p $pid -o comm=)
+
+        printf "%${space}s%s($pid): $mem MB\n" '' "$name"
+
+        # get children
+        local children=$(pgrep -P $pid)
+
+        # add children to array
+        for child in $children; do
+            arr+=("$child" $((space+2)))
+        done
+    done
+    printf "Total: $total MB\n"
+}
