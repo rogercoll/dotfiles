@@ -1,9 +1,9 @@
 [user]
     email = rogercoll@protonmail.com
     name = Roger Coll
-    signingkey = XXXX
+    ; signingkey = XXXX
 [core]
-    editor = vim
+    editor = nvim
     excludesFile = ~/.global_gitignore
     hooksPath = ~/.global_githooks
 [alias]
@@ -32,5 +32,5 @@
     added = green bold
     changed = yellow bold
     untracked = red
-[commit]
-    gpgsign = true
+; [commit]
+;     gpgsign = true
