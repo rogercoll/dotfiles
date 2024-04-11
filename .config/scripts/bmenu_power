@@ -52,7 +52,7 @@ show_menu() {
     tmp+=$'\n'$option
   done
 
-  echo "$tmp" | show_bemenu "Power Menu" | bemenu_power -c
+  echo "$tmp" | show_bemenu "Power Menu" | confirm_action
 }
 
 confirm_action() {
@@ -62,7 +62,7 @@ confirm_action() {
   get_index "$stdin"
   if [ ! -z "$IDX" ]; then
     echo -e "Cancel\n$stdin" | show_bemenu "Sure?" | \
-      bemenu_power -r
+      run_command
   fi
 }
 
