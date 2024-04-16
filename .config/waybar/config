@@ -116,8 +116,8 @@
         "tooltip": false
     },
 
-    "sway/window": {
-        "format": "{}",
+    "hyrpland/window": {
+        "format": "👉 {initialTitle}",
         "max-length": 120
     },
 
