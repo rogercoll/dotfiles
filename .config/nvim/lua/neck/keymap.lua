@@ -1,6 +1,9 @@
 -- [[ Basic Keymaps ]]
+--  Basic buffers keymaps
+vim.keymap.set('n', '<leader>h', ':bp<CR>', { desc = '[P]revious buffer' })
+vim.keymap.set('n', '<leader>l', ':bn<CR>', { desc = '[N]ext buffer' })
 --  See `:help vim.keymap.set()`
-vim.keymap.set('n', '<leader>x', vim.cmd.Ex, { desc = 'Open file explorer' })
+vim.keymap.set('n', '<leader>x', vim.cmd.Ex, { desc = 'Open file e[X]plorer' })
 
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Move selected lines up' })
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Move selected lines down' })
