@@ -1,7 +1,7 @@
 -- [[ Basic Keymaps ]]
 --  Basic buffers keymaps
-vim.keymap.set('n', '<leader>h', ':bp<CR>', { desc = '[P]revious buffer' })
-vim.keymap.set('n', '<leader>l', ':bn<CR>', { desc = '[N]ext buffer' })
+vim.keymap.set('n', '<leader>pb', ':bp<CR>', { desc = '[P]revious [B]uffer' })
+vim.keymap.set('n', '<leader>nb', ':bn<CR>', { desc = '[N]ext [B]uffer' })
 --  See `:help vim.keymap.set()`
 vim.keymap.set('n', '<leader>x', vim.cmd.Ex, { desc = 'Open file e[X]plorer' })
 
