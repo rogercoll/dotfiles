@@ -1,0 +1,178 @@
+// -*- mode: json -*-
+
+{
+  "layer": "top",
+    "position": "top",
+    "margin-top": 0,
+    "margin-left": 12,
+    "margin-right": 12,
+    "margin-bottom": 0,
+    "modules-left": [
+      "hyprland/workspaces",
+      "custom/space",
+      "group/hardware",
+      "custom/space",
+      "custom/space",
+    ],
+    "modules-right": [
+      "group/docker",
+      "custom/space",
+      "clock",
+      "custom/space",
+      "network",
+      "custom/space",
+      "custom/space",
+      "custom/space",
+      "custom/space",
+      "battery",
+      "custom/space",
+    ],
+
+    "group/hardware": {
+      "orientation": "horizontal",
+      "modules": [
+        "custom/space",
+        "custom/cpuicon",
+        "cpu",
+        "custom/memicon1",
+        "memory",
+        "custom/space",
+        "pulseaudio",
+        "custom/space",
+      ],
+    },
+    "group/docker":{
+      "orientation": "horizontal",
+      "modules": [
+        "custom/dockericon",
+        "custom/dockerps",
+      ]
+    },
+    "custom/cpuicon": {
+      "format": "  ",
+      "tooltip": false,
+      "tooltip-format": "CPU usage",
+      "on-click": "kitty -e htop",
+    },
+    "custom/memicon1": {
+      "format": "    ",
+      "tooltip": false,
+      "on-click": "kitty -e htop",
+      "tooltip-format": "Memory usage",
+    },
+    "custom/space": {
+      "format": " ",
+      "tooltip": false
+    },
+    "custom/dot": {
+      //"format": ".",
+      "format": "",
+      "tooltip": false
+    },
+    "custom/clipboard": {
+      "format": " ",
+      "tooltip": false,
+      "tooltip-format": "Clipboard Manager",
+      "on-click": "/home/yanice/.config/rofi/launchers/type-1/launcher.sh",
+    },
+    "custom/tailscale": {
+      "exec": "/home/yanice/.config/waybar/tailscale.sh",
+      "interval": 2,
+      "tooltip": false,
+      "tooltip-format": "VPN status",
+      "on-click": "/home/yanice/.local/bin/tailscale_toggle"
+    },
+    "custom/dockericon": {
+      "format": "  ",
+      "tooltip-format": "Docker status",
+    },
+    "custom/dockerps": {
+      "exec": "/home/yanice/.config/waybar/docker.sh",
+      "interval": 3,
+      "tooltip": false,
+      "tooltip-format": "Docker status",
+    },
+    "custom/wlogout": {
+      "format": "",
+      "tooltip": false,
+      "on-click": "wlogout",
+    },
+
+    "clock": {
+      //"format": "{: %d-%m-24  %H:%M}",
+      "format": "{:%a %d    %H:%M}",
+      //"format": "{:%a}",
+      "tooltip-format": "<tt>{calendar}</tt>",
+      "calendar": {
+        "mode"          : "month",
+        "format": {
+          "months":     "<span color='#eeeeee'><b>{}</b></span>",
+          "days":       "<span color='#eeeeee'><b>{}</b></span>",
+          "weeks":      "<span color='#eeeeee'><b>W{}</b></span>",
+          "weekdays":   "<span color='#eeeeee'><b>{}</b></span>",
+          "today":      "<span color='#00FF00'><b>{}</b></span>"
+        }
+      },
+    },
+
+    "pulseaudio": {
+      "format": "  {icon}   {volume:2}%",
+      "format-bluetooth": "{icon}  {volume}%",
+      "format-source": "  {volume}%",
+      "format-muted": "MUTE",
+      "format-icons": {
+        "headphones": " ",
+        "default": [
+          " ",
+          " "
+        ]
+      },
+      "scroll-step": 1,
+      "on-click": "pavucontrol",
+      "on-click-right": "pamixer -t"
+    },
+    "memory": {
+      "interval": 5,
+      "format": "{}%",
+      "on-click": "kitty -e htop",
+    },
+    "cpu": {
+      "interval": 5,
+      "on-click": "kitty -e htop",
+      "format": "{usage:2}%"
+    },
+    "battery": {
+      "states": {
+        "good": 95,
+        "warning": 30,
+        "critical": 15
+      },
+      "on-click": "wlogout",
+      "format": "{icon}   {capacity}%      ",
+      "format-icons": [
+        " ",
+        " ",
+        " ",
+        " ",
+        " "
+      ],
+    },
+    "tray": {
+      "icon-size": 20
+    },
+    "network": {
+      // "interface": "wlp2*", // (Optional) To force the use of this interface
+      "format-wifi": "󱚽 ",
+      "format-ethernet": "{ipaddr}/{cidr}  ",
+      "tooltip-format": "{essid}\n{ifname} via {gwaddr}\n                  󱚻   {signalStrength}% ",
+      "format-linked": "{ifname} (No IP) 󰤭 ",
+      "format-disconnected": "󱛅",
+      //"format-alt": "{ifname}: {ipaddr}/{cidr}",
+      "on-click": "nmcli dev wifi rescan; hyprctl notify 5 1500 'rgb(d3c6aa)' 'Wifi rescan!'"
+    },
+    "backlight": {
+      "device": "intel_backlight",
+      "format": " {icon} {percent}%",
+      "format-icons": ["", "", ""],
+    },
+}

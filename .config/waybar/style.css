@@ -1,0 +1,179 @@
+* {
+    font-family: Cantarell;
+    font-weight: bold;
+    color: white;
+    font-size: 14px;
+}
+tooltip label {
+    padding: 3px 3px 3px 3px;
+    font-family: Cantarell;
+    font-weight: bold;
+    color: white;
+}
+tooltip {
+    padding: 3px 3px 3px 3px;
+    background: #2e3336;
+    border: 0px solid;
+    border-radius: 5px;
+    color: white;
+}
+
+window#waybar {
+    background: rgba(0, 0, 0, 0);
+    color: #fdf6e3;
+    opacity: 0.8;
+}
+
+#custom-dot {
+    font-size: 8px;
+    font-family: JetBrainsMono Nerd Font;
+}
+#custom-memicon1 {
+    font-size: 18px;
+}
+#custom-cpuicon {
+    font-weight: normal;
+    font-size: 18px;
+}
+#custom-workspaces {
+    font-size: 12px;
+    font-family: JetBrainsMono Nerd Font;
+}
+#custom-wlogout{
+    background-color: rgba(1, 1, 1, 0.5);
+    border: 0px solid;
+    border-radius: 8px;
+}
+#mpd{
+    padding: 0px 20px 0px 20px;
+    background-color: rgba(1, 1, 1, 0.5);
+    border: 0px solid;
+    border-radius: 8px;
+    min-width: 70px;
+}
+#custom-workspaces{
+    padding: 3px 12px 3px 18px;
+    background-color: rgba(1, 1, 1, 0.5);
+    border: 0px solid;
+    border-radius: 8px;
+    min-width: 70px;
+}
+#clock{
+    padding: 3px 10px 3px 10px;
+    background-color: rgba(1, 1, 1, 0.5);
+    border: 0px solid;
+    border-radius: 8px;
+    padding-left: 20px;
+    padding-right: 20px;
+    min-width: 20px;
+}
+.modules-left{
+    border: 0px solid;
+    background: transparent;
+    border-radius: 13px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+.modules-center{
+    border: 0px solid;
+    background: transparent;
+    border-radius: 13px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+.modules-right{
+    border: 0px solid;
+    background: transparent;
+    border-radius: 3px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+#hardware{
+    background-color: rgba(1, 1, 1, 0.5);
+    padding: 0px 20px 0px 20px;
+    border: 0px solid;
+    border-radius: 8px;
+    min-width: 150px;
+}
+#network{
+    background-color: rgba(1, 1, 1, 0.5);
+    border-radius: 8px 0px 0px 8px;
+    padding: 3px 0px;
+    padding-left: 20px;
+    margin: 0px 0px 0px 0px;
+    min-width: 10px;
+}
+#custom-clipboard{
+    background-color: rgba(1, 1, 1, 0.5);
+    border-radius: 0px 0px 0px 0px;
+    padding: 3px 0px;
+    padding-right: 20px;
+    margin: 0px 0px 0px 0px;
+    min-width: 10px;
+}
+#custom-tailscale{
+    background-color: rgba(1, 1, 1, 0.5);
+    border-radius: 0px 0px 0px 0px;
+    padding: 3px 0px;
+    padding-right: 20px;
+    margin: 0px 0px 0px 0px;
+    min-width: 10px;
+}
+#battery {
+    background-color: rgba(1, 1, 1, 0.5);
+    border-radius: 0px 8px 8px 0px;
+    padding: 3px 0px;
+    padding-right: 20px;
+    margin: 0px 0px 0px 0px;
+    min-width: 50px;
+}
+#cpu{
+    padding: 3px 0px;
+    margin: 0px 0px 0px 0px;
+}
+#custom-cpuicon{
+    padding: 3px 0px;
+    margin: 0px 0px 0px 0px;
+}
+#memory{
+    padding: 3px 0px;
+    margin: 0px 0px 0px 0px;
+}
+#custom-memicon1{
+    padding: 3px 0px;
+    margin: 0px 0px 0px 0px;
+}
+#custom-space{
+    padding: 3px 0px;
+    margin: 0px 0px 0px 0px;
+}
+#pulseaudio{
+    padding: 3px 0px;
+    margin: 0px 0px 0px 0px;
+}
+#custom-wlogout{
+    padding: 3px 20px;
+    margin: 0px 0px 0px 0px;
+    border-radius: 8px;
+    min-width: 10px;
+}
+#custom-dockericon{
+    background-color: rgba(1, 1, 1, 0.5);
+    border-radius: 8px 0px 0px 8px;
+    padding: 3px 0px;
+    padding-left: 20px;
+    margin: 0px 0px 0px 0px;
+}
+#custom-dockerps{
+    background-color: rgba(1, 1, 1, 0.5);
+    border-radius: 0px 8px 8px 0px;
+    padding: 3px 0px;
+    padding-right: 20px;
+    margin: 0px 0px 0px 0px;
+}

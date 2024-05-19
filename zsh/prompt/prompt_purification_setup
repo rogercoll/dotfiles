@@ -16,12 +16,15 @@ function git_branch_name()
 #   - 098 = lavender
 #   - 172 = orange
 #   - 031 = green (last command succeeded)
-#   - 174 = red (last command failed)
+#   - 226 = yellow
+#   - 196 = red (last command failed)
 #   - reset = revert to the default foreground color
+# %B = start bold text
+# %b = end bold text
 # %2/ = two last directories of pwd, separator with '/'
 # $(git_branch_name) = git branch name if any
 # $ = literal '$'
 # %(?.<success>.<failed>) = ternary conditional for the last command
 setopt prompt_subst
-PROMPT='%F{098}%2/ %F{172}$(git_branch_name) %(?.%F{031}.%F{174})$ %F{reset}'
+PROMPT='%F{226}%2/ %F{172}$(git_branch_name) %(?.%F{034}.%F{196})$ %F{reset}'
 # }}}
