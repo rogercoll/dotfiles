@@ -66,3 +66,6 @@ vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 -- Set and enable the spell language to en_us
 -- https://neovim.io/doc/user/spell.html#spellfile-cleanup
 vim.cmd 'setlocal spell spelllang=en_us'
+
+-- Disable swap files
+vim.opt.swapfile = false
