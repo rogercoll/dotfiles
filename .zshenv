@@ -26,4 +26,5 @@ export GOBIN="$HOME/.go/bin"
 
 
 # PATH
-export PATH="$GOBIN:$PATH"              # GOBIN 
+export PATH="$GOBIN:$PATH"              	   # GOBIN
+export PATH="/usr/local/go/bin:$PATH"              # GOCOMPILERBIN

@@ -43,3 +43,7 @@ source $DOTFILES/zsh/functions/basic
 # Some alias depend on basic functions
 
 source $DOTFILES/zsh/aliases/aliases
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

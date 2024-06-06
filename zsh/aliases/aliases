@@ -46,3 +46,8 @@ alias crypto='ssh cointop.sh'
 # | Golang |
 # +--------+
 alias got='go test -v ./...'
+
+# +--------+
+# |  K8S   |
+# +--------+
+alias k='kubectl'
