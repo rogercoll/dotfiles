@@ -2,19 +2,37 @@ return {
   {
     'neovim/nvim-lspconfig',
     dependencies = {
+      -- Automatically install LSPs and related tools to stdpath for Neovim
+      'williamboman/mason.nvim',
+      'williamboman/mason-lspconfig.nvim',
+      'WhoIsSethDaniel/mason-tool-installer.nvim',
       -- fidget for LSP status updates
       { 'j-hui/fidget.nvim', opts = {} },
       -- neodev for Lua LSP
       { 'folke/neodev.nvim', opts = {} },
     },
     config = function()
+      -- You can add other tools here that you want Mason to install
+      -- for you, so that they are available from within Neovim.
+      local ensure_installed = vim.tbl_keys(servers or {})
+      vim.list_extend(ensure_installed, {
+        'stylua', -- Used to format Lua code
+        'rust-analyzer',
+        'lua-language-server',
+        'yaml-language-server',
+        'bash-language-server',
+      })
+      require('mason-tool-installer').setup { ensure_installed = ensure_installed }
+      require('mason').setup()
+      require('mason-lspconfig').setup()
+
       -- Setup LSP configurations here
 
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
       -- Define your LSP servers and any specific configurations here
-      local lspconfig = require('lspconfig')
+      local lspconfig = require 'lspconfig'
 
       -- Example configuration for `gopls`
       lspconfig.gopls.setup {
@@ -40,8 +58,16 @@ return {
         capabilities = capabilities,
       }
 
+      lspconfig.yamlls.setup {
+        filetypes = { 'yaml' },
+      }
+
+      lspconfig.bashls.setup {
+        filetypes = { 'sh', 'bash' },
+      }
+
       -- Example configuration for `lua_ls` (note the use of `neodev` for enhanced Lua support)
-      require('neodev').setup({})
+      require('neodev').setup {}
       lspconfig.lua_ls.setup {
         settings = {
           Lua = {
