@@ -16,7 +16,7 @@ function nvim_launch {
     local path_arg="$1"               # grab the first argument
     shift                             # remove the first argument from $@
     elements=(${(s/:/)path_arg})      # split the first argument on ':'
-    local file=${elements[@]:0:1}     # get the file value that precedes the ':' 
+    local file=${elements[@]:0:1}     # get the file value that precedes the ':'
     args+=($file)                     # add the file to our args array
     local line_num=${elements[@]:1:1} # get the line value that follows the ':'
     if (( line_num )); then           # if the line value is set
@@ -48,6 +48,29 @@ function port {
   lsof -i :$p
 }
 
+# exec sh in a docker container
+function dsh {
+  # alias port='docker exec -it $id sh'
+  p=$1
+  if [ -z "$p" ]; then
+    echo "dsh() - run a shell in docker container"
+    echo "Usage: dsh <container id>"
+    return
+  fi
+  docker exec -it $p sh
+}
+
+# exec bash in a k8s pod
+function ksh {
+  # alias port='kubectl exec --stdin --tty $id -- /bin/bash'
+  p=$1
+  if [ -z "$p" ]; then
+    echo "ksh() - run a bash shell in a k8s pod"
+    echo "Usage: ksh <pod id>"
+    return
+  fi
+  kubectl exec --stdin --tty $p -- /bin/bash
+}
 
 
 # Say you have a process who spawns processes, how much vmrss memories you using?
