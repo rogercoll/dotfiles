@@ -1,7 +1,6 @@
 # +----+
 # | ls |
 # +----+
-
 alias ls='lsd'
 alias l='lsd -l'
 alias ll='lsd -lahF'
@@ -13,7 +12,6 @@ alias lt='lsd --tree'
 # +----+
 # | cp |
 # +----+
-
 alias cp='cp -iv'
 alias mv='mv -iv'
 alias rm='rm -iv'
@@ -22,14 +20,12 @@ alias rm='rm -iv'
 # +-----+
 # | cat |
 # +-----+
-
 alias cat="bat --style header-filesize,header-filename"
 
 
 # +-----+
 # | vim |
 # +-----+
-
 alias nvim=nvim_launch
 alias n=nvim_launch
 alias vi=nvim_launch
@@ -52,3 +48,11 @@ alias got='go test -v ./...'
 # |  K8S   |
 # +--------+
 alias k='kubectl'
+alias kgp='kubectl get pods'
+
+# +----+
+# | cd |
+# +----+
+alias cdgh='cd /home/neck/Documents/github/'
+alias cdd='cd /home/neck/Documents/'
+alias cddot='cd /home/neck/.config/dotfiles/'

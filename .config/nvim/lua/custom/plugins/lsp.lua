@@ -58,6 +58,12 @@ return {
         capabilities = capabilities,
       }
 
+      -- Example configuration for `zls (zig)`
+      lspconfig.zls.setup {
+        filetypes = { 'zig' },
+        capabilities = capabilities,
+      }
+
       lspconfig.yamlls.setup {
         filetypes = { 'yaml' },
       }

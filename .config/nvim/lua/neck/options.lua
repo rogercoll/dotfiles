@@ -69,3 +69,7 @@ vim.cmd 'setlocal spell spelllang=en_us'
 
 -- Disable swap files
 vim.opt.swapfile = false
+
+-- Short lines
+vim.opt.colorcolumn = '80'
+vim.opt.textwidth = 80

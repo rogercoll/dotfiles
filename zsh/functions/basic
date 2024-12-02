@@ -60,6 +60,18 @@ function dsh {
   docker exec -it $p sh
 }
 
+# read docker logs using docker container name
+function dlogs {
+  # alias port='docker exec -it $id sh'
+  p=$1
+  if [ -z "$p" ]; then
+    echo "dlogs() - read the docker container logs given its name pattern"
+    echo "Usage: dlogs <container name>"
+    return
+  fi
+  docker ps --format='{{.Names}} {{.ID}}' | grep $p | cut -d ' ' -f2 | xargs docker logs -f
+}
+
 # exec bash in a k8s pod
 function ksh {
   # alias port='kubectl exec --stdin --tty $id -- /bin/bash'
