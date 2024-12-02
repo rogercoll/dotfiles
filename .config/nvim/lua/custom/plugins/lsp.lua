@@ -47,6 +47,7 @@ return {
             },
             staticcheck = true,
             gofumpt = true,
+            buildFlags = { '-tags=integration' },
           },
         },
         capabilities = capabilities,
