@@ -61,7 +61,17 @@ return {
         --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
         --   },
         -- },
-        -- pickers = {}
+        pickers = {
+          find_files = {
+            theme = 'ivy',
+          },
+          live_grep = {
+            theme = 'ivy',
+          },
+          buffers = {
+            theme = 'ivy',
+          },
+        },
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),

@@ -47,7 +47,7 @@ return {
             },
             staticcheck = true,
             gofumpt = true,
-            buildFlags = { '-tags=integration' },
+            buildFlags = { '-tags=integration,sudo,mage' },
           },
         },
         capabilities = capabilities,
