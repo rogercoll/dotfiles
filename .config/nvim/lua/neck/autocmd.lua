@@ -23,7 +23,7 @@ vim.api.nvim_create_autocmd('FileType', {
   pattern = { 'go' },
   callback = function()
     vim.schedule(function()
-      vim.keymap.set('n', '<leader>re', 'oif err != err {<CR>}<ESC>Oreturn err<ESC>')
+      vim.keymap.set('n', '<leader>re', 'oif err != err {<CR>}<ESC>Oreturn err<ESC>', { desc = '[R]eturn [E]rror' })
       -- TODO: Add more keymaps here
     end)
   end,
@@ -31,3 +31,27 @@ vim.api.nvim_create_autocmd('FileType', {
 
 -- Autoload bash skeleton
 vim.api.nvim_command 'autocmd BufNewFile *.sh 0r ~/.config/nvim/skeletons/bash.sh'
+
+-- TERMINAL
+-- Remove line numbers Neovim term
+vim.api.nvim_create_autocmd('TermOpen', {
+  group = vim.api.nvim_create_augroup('custom-term-open', { clear = true }),
+  callback = function()
+    vim.opt.number = false
+    vim.opt.relativenumber = false
+  end,
+})
+-- Small term
+local job_id = 0
+vim.keymap.set('n', '<space>st', function()
+  vim.cmd.vnew()
+  vim.cmd.term()
+  vim.cmd.wincmd 'J'
+  vim.api.nvim_win_set_height(0, 10)
+
+  job_id = vim.bo.channel
+end, { desc = '[S]mall [T]erminal' })
+
+vim.keymap.set('n', '<space>got', function()
+  vim.fn.chansend(job_id, { 'go test -cover -v ./..\r\n' })
+end)
