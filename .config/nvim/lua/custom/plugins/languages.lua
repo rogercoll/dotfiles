@@ -9,9 +9,9 @@ return {
     end,
   },
   {
-    'rogercoll/rust.vim',
-    branch = 'neck_fixes',
+    'mrcjkb/rustaceanvim',
     ft = 'rust',
+    lazy = false,
     -- or lazy = false,
     config = function()
       vim.g.rustfmt_autosave = 1
