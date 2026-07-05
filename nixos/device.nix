@@ -46,6 +46,8 @@
       unzip
       wget
       zip
+      fd
+      ripgrep
     ];
 
     # Default fonts.

@@ -79,14 +79,6 @@
 
                 knownHosts = [ thinkpad ];
 
-                version-control-system = {
-                  user = {
-                    name = "Roger Coll";
-                    email = "rogercoll@protonmail.com";
-                  };
-                  extraTools = [ "jj" ];
-                };
-
                 desktopEnvironment = {
                   wallpaper = ./assets/wallpapers/ancient-greece.jpeg;
                   profile = "work";

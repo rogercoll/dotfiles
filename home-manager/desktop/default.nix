@@ -1,6 +1,6 @@
 {
   config,
-  lib,
+ lib,
   pkgs,
   ...
 }:
@@ -24,7 +24,6 @@
     ./niri.nix
     ./notify.nix
     ./rofi.nix
-    ./vscodium.nix
     ./waybar.nix
   ];
 
@@ -32,7 +31,6 @@
     with config.desktopEnvironment;
     lib.mkMerge [
       (lib.mkIf (profile == "personal") {
-        programs.vscodium.enable = true;
 
         home.packages = with pkgs; [
           inkscape
@@ -40,7 +38,6 @@
         ];
       })
       (lib.mkIf (profile == "work") {
-        programs.vscodium.enable = true;
 
         home.packages = with pkgs; [
           postman
