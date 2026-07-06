@@ -48,6 +48,8 @@
       zip
       fd
       ripgrep
+      lsd
+      bat
     ];
 
     # Default fonts.

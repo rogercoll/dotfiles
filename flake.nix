@@ -63,6 +63,8 @@
                   ./home-manager
                   ./home-manager/claude.nix
                   ./home-manager/direnv.nix
+                  ./home-manager/fzf.nix
+                  ./home-manager/git.nix
                   ./home-manager/keygen.nix
                   ./home-manager/latex.nix
                   ./home-manager/neovim.nix

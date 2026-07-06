@@ -24,5 +24,6 @@
   home.sessionVariables = with pkgs; {
     EDITOR = lib.getExe neovim;
     VISUAL = lib.getExe neovim;
+    MANPAGER = "nvim +Man!";
   };
 }
