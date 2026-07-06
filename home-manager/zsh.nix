@@ -282,13 +282,6 @@ in
         alias -s go='$EDITOR'
       ''
 
-      # Prompt
-      ''
-        autoload -U colors && colors
-        PROMPT='╭─ %F{${success}}%n@%m%f %F{${info}}%~%f
-        ╰─ '
-      ''
-
       (lib.mkIf withNiri ''
         if [[
           "$(tty)" == "/dev/tty1"

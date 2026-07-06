@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   home.packages = [ pkgs.xclip ];
 
@@ -14,15 +14,16 @@
       sensible
       vim-tmux-navigator
       resurrect
-      {
-        plugin = base16;
-        extraConfig = "set -g @colors-base16 'default-dark'";
-      }
     ];
 
     extraConfig = ''
       # 24-bit color
       set-option -sa terminal-overrides ",xterm*:Tc"
+
+      # Status bar
+      set -g status-style "bg=${config.theme.colors.surface},fg=${config.theme.colors.foreground}"
+      set -g status-left-style "fg=${config.theme.colors.accent},bold"
+      set -g window-status-current-style "fg=${config.theme.colors.info},bold"
 
       set -g pane-base-index 1
       set-window-option -g pane-base-index 1
