@@ -1,7 +1,5 @@
 { pkgs, config, ... }:
 {
-  home.packages = [ pkgs.xclip ];
-
   programs.tmux = {
     enable = true;
     prefix = "C-t";
@@ -13,10 +11,10 @@
     plugins = with pkgs.tmuxPlugins; [
       sensible
       vim-tmux-navigator
-      resurrect
     ];
 
     extraConfig = ''
+      bind-key C-t send-prefix
       # 24-bit color
       set-option -sa terminal-overrides ",xterm*:Tc"
 
@@ -34,13 +32,6 @@
       bind c new-window -c "#{pane_current_path}"
       bind % split-window -h -c "#{pane_current_path}"
       bind '"' split-window -v -c "#{pane_current_path}"
-
-      # Copy to system clipboard
-      bind -T copy-mode-vi y send -X copy-pipe-and-cancel "xclip -selection clipboard -in"
-
-      # Days since 2024-01-30
-      set -g status-right '#(python3 -c "from datetime import datetime; d1 = datetime(2024, 1, 30); d2 = datetime.now(); print((d2 - d1).days)")'
-      set -g status-interval 3600
     '';
   };
 }

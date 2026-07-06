@@ -21,7 +21,7 @@ let
           keyboard {
               xkb {
                   layout "us,es"
-                  options "grp:win_space_toggle"
+                  options "grp:win_space_toggle,caps:escape"
               }
 
               numlock
@@ -272,7 +272,7 @@ let
         // Mod+Ctrl+1 { move-window-to-workspace 1; }
 
         // Switches focus between the current and the previous workspace.
-        Mod+Tab { focus-workspace-previous; }
+        // Mod+Tab { focus-workspace-previous; }
 
         // The following binds move the focused window in and out of a column.
         // If the window is alone, they will consume it into the nearby column to the side.

@@ -111,6 +111,11 @@ in
     };
 
     initContent = lib.mkMerge [
+     ''
+        autoload -U colors && colors
+        PROMPT='╭─ %F{${success}}%n@%m%f %F{${info}}%~%f
+        ╰─ '
+      ''
       # History setopts not covered by programs.zsh.history
       (lib.mkBefore ''
         setopt HIST_NO_FUNCTIONS
@@ -282,6 +287,12 @@ in
         alias -s go='$EDITOR'
       ''
 
+      # Remap fzf file widget to Ctrl+F
+      (lib.mkAfter ''
+        bindkey -r '^T'
+        bindkey '^F' fzf-file-widget
+      '')
+
       (lib.mkIf withNiri ''
         if [[
           "$(tty)" == "/dev/tty1"
@@ -303,8 +314,8 @@ in
       "$schema" = "https://starship.rs/config-schema.json";
 
       format = ''
-        [](fg:${surface})$username''${custom.hostname}[](fg:${surface} bg:${info})$directory[](fg:${info} bg:${warning})''${custom.vcs}[](fg:${warning})
-        [  ](fg:${foreground})
+        [](fg:${surface})$username''${custom.hostname}[](fg:${surface} bg:${info})$directory[](fg:${info} bg:${warning})''${custom.vcs}[](fg:${warning})
+        [  ](fg:${foreground})
       '';
 
       add_newline = true;
@@ -357,7 +368,7 @@ in
                 git branch --show-current
             fi
           '';
-          symbol = "<U+F418>";
+          symbol = "";
           style = "fg:${background} bg:${warning}";
           format = "[ $symbol $output ]($style)";
         };
