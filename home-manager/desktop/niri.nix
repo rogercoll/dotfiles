@@ -104,7 +104,8 @@ let
         Mod+Shift+Slash { show-hotkey-overlay; }
 
         Mod+Return hotkey-overlay-title="Open a terminal" { spawn "alacritty"; }
-        Alt+Space hotkey-overlay-title="Run an application" { spawn-sh "rofi -show drun"; }
+        Mod+D hotkey-overlay-title="Run an application" { spawn-sh "rofi -show drun"; }
+        Mod+Z hotkey-overlay-title="Lock session" { spawn-sh "loginctl lock-session"; }
         Mod+Alt+L hotkey-overlay-title="Lock session" { spawn-sh "loginctl lock-session"; }
 
         // Waybar
@@ -271,7 +272,7 @@ let
         // Mod+Ctrl+1 { move-window-to-workspace 1; }
 
         // Switches focus between the current and the previous workspace.
-        // Mod+Tab { focus-workspace-previous; }
+        Mod+Tab { focus-workspace-previous; }
 
         // The following binds move the focused window in and out of a column.
         // If the window is alone, they will consume it into the nearby column to the side.
