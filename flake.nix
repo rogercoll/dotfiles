@@ -82,7 +82,7 @@
                 knownHosts = [ thinkpad ];
 
                 desktopEnvironment = {
-                  wallpaper = ./assets/wallpapers/ancient-greece.jpeg;
+                  wallpaper = ./assets/wallpapers/vintage-misty-forest.jpg;
                   profile = "work";
                 };
               };
