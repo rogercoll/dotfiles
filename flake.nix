@@ -30,13 +30,24 @@
       };
     in
     {
-      devShells.${system}.default = pkgs.mkShell {
-        packages = with pkgs; [
-          lua-language-server
-          nixd
-          nixfmt
-          stylua
-        ];
+      devShells.${system} = {
+        default = pkgs.mkShell {
+          packages = with pkgs; [
+            lua-language-server
+            nixd
+            nixfmt
+            stylua
+          ];
+        };
+
+        elasticsearch =
+          let
+            temurin21 = pkgs.javaPackages.compiler.temurin-bin.jdk-21;
+          in
+          pkgs.mkShell {
+            packages = [ temurin21 ];
+            JAVA_HOME = "${temurin21}";
+          };
       };
 
       nixosConfigurations.thinkpad = nixpkgs.lib.nixosSystem {
@@ -98,6 +109,9 @@
               hostname = thinkpad.hostname;
               shell = "zsh";
             };
+
+            # Dynamic linker shim for unpatched Linux binaries (e.g. JDKs downloaded by Gradle).
+            programs.nix-ld.enable = true;
           }
         ];
       };
