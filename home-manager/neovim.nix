@@ -12,6 +12,8 @@
     vimAlias = true;
     withRuby = false;
     withPython3 = false;
+    # wakatime only used within nvim
+    extraPackages = with pkgs; [ wakatime-cli ];
   };
 
   xdg.configFile."nvim/" = {
