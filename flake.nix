@@ -85,6 +85,7 @@
         inherit system;
         modules = [
           home-manager.nixosModules.home-manager
+          ./hardware-configuration/pxct.nix
           ./nixos/bluetooth.nix
           ./nixos/device.nix
           ./nixos/locale.nix
