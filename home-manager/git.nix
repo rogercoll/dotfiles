@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   programs.git = {
     enable = true;
@@ -51,6 +51,7 @@
         ui = true;
       };
       gpg.format = "ssh";
+      http.sslCAInfo = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
     };
   };
 }

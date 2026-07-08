@@ -59,10 +59,6 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
--- Set custom treesitter foldmethod
--- vim.opt.foldmethod = 'expr'
-vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
-
 -- Set and enable the spell language to en_us
 -- https://neovim.io/doc/user/spell.html#spellfile-cleanup
 vim.cmd 'setlocal spell spelllang=en_us'
