@@ -28,6 +28,12 @@
         hostname = "wxct";
         ip = "192.168.8.135";
       };
+
+      pxct = {
+        username = "neck";
+        hostname = "pxct";
+        ip = "192.168.8.136";
+      };
     in
     {
       devShells.${system} = {
@@ -73,6 +79,75 @@
             packages = [ temurin21 ];
             JAVA_HOME = "${temurin21}";
           };
+      };
+
+      nixosConfigurations.pxct = nixpkgs.lib.nixosSystem {
+        inherit system;
+        modules = [
+          home-manager.nixosModules.home-manager
+          ./nixos/bluetooth.nix
+          ./nixos/device.nix
+          ./nixos/locale.nix
+          ./nixos/network.nix
+          ./nixos/pam.nix
+          ./nixos/pipewire.nix
+          ./nixos/startup.nix
+          ./nixos/desktop
+          ./nixos/tlp.nix
+          ./nixos/virtualisation.nix
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.${pxct.username} = {
+                imports = [
+                  ./home-manager
+                  ./home-manager/claude.nix
+                  ./home-manager/direnv.nix
+                  ./home-manager/fzf.nix
+                  ./home-manager/git.nix
+                  ./home-manager/keygen.nix
+                  ./home-manager/latex.nix
+                  ./home-manager/development.nix
+                  ./home-manager/neovim.nix
+                  ./home-manager/ollama.nix
+                  ./home-manager/ssh.nix
+                  ./home-manager/theme.nix
+                  ./home-manager/tmux.nix
+                  ./home-manager/zsh.nix
+                  ./home-manager/desktop
+                  ./home-manager/desktop/brave.nix
+                ];
+
+                theme.name = "gruvbox";
+
+                knownHosts = [ pxct ];
+
+                desktopEnvironment = {
+                  wallpaper = ./assets/wallpapers/vintage-misty-forest.jpg;
+                  profile = "personal";
+                };
+              };
+            };
+
+            desktopEnvironment = {
+              displayManager = "none";
+              sessions = [ "niri" ];
+            };
+
+            profile = {
+              username = pxct.username;
+              hostname = pxct.hostname;
+              shell = "zsh";
+            };
+
+            programs.nix-ld.enable = true;
+
+            system.activationScripts.binbash.text = ''
+              ln -sfn ${pkgs.bash}/bin/bash /bin/bash
+            '';
+          }
+        ];
       };
 
       nixosConfigurations.wxct = nixpkgs.lib.nixosSystem {
