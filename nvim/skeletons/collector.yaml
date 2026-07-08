@@ -1,0 +1,25 @@
+receivers:
+
+processors:
+
+exporters:
+
+connectors:
+
+service:
+  telemetry:
+    logs:
+      level: debug
+  pipelines:
+    metrics:
+      receivers:
+      processors:
+      exporters:
+    traces:
+      receivers:
+      processors:
+      exporters:
+    logs:
+      receivers:
+      processors:
+      exporters:
