@@ -40,6 +40,31 @@
           ];
         };
 
+        kibana =
+          let
+            nodejs = pkgs.stdenv.mkDerivation {
+              pname = "nodejs";
+              version = "24.18.0";
+              src = pkgs.fetchurl {
+                url = "https://nodejs.org/dist/v24.18.0/node-v24.18.0-linux-x64.tar.gz";
+                hash = "sha256-eDEwmElj23upy9AQierywu+wVcfBaTyUMXS5Z7MFDLg=";
+              };
+              nativeBuildInputs = [ pkgs.autoPatchelfHook ];
+              buildInputs = with pkgs; [ stdenv.cc.cc.lib ];
+              installPhase = ''
+                mkdir -p $out
+                cp -r . $out
+              '';
+            };
+          in
+          pkgs.mkShell {
+            packages = [ nodejs (pkgs.yarn.override { inherit nodejs; }) ];
+            shellHook = ''
+              export NPM_CONFIG_PREFIX="$HOME/.npm-global"
+              export PATH="$HOME/.npm-global/bin:$PATH"
+            '';
+          };
+
         elasticsearch =
           let
             temurin21 = pkgs.javaPackages.compiler.temurin-bin.jdk-21;
@@ -78,6 +103,7 @@
                   ./home-manager/git.nix
                   ./home-manager/keygen.nix
                   ./home-manager/latex.nix
+                  ./home-manager/development.nix
                   ./home-manager/neovim.nix
                   ./home-manager/ollama.nix
                   ./home-manager/ssh.nix
@@ -112,6 +138,11 @@
 
             # Dynamic linker shim for unpatched Linux binaries (e.g. JDKs downloaded by Gradle).
             programs.nix-ld.enable = true;
+
+            # Some tools (e.g. Bazel) hardcode /bin/bash which does not exist on NixOS.
+            system.activationScripts.binbash.text = ''
+              ln -sfn ${pkgs.bash}/bin/bash /bin/bash
+            '';
           }
         ];
       };
