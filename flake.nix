@@ -23,9 +23,9 @@
         inherit system;
       };
 
-      thinkpad = {
+      wxct = {
         username = "neck";
-        hostname = "thinkpad";
+        hostname = "wxct";
         ip = "192.168.8.135";
       };
     in
@@ -75,11 +75,11 @@
           };
       };
 
-      nixosConfigurations.thinkpad = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.wxct = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [
           home-manager.nixosModules.home-manager
-          ./hardware-configuration/thinkpad.nix
+          ./hardware-configuration/wxct.nix
           ./nixos/bluetooth.nix
           ./nixos/device.nix
           ./nixos/locale.nix
@@ -94,7 +94,7 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              users.${thinkpad.username} = {
+              users.${wxct.username} = {
                 imports = [
                   ./home-manager
                   ./home-manager/claude.nix
@@ -116,7 +116,7 @@
 
                 theme.name = "gruvbox";
 
-                knownHosts = [ thinkpad ];
+                knownHosts = [ wxct ];
 
                 desktopEnvironment = {
                   wallpaper = ./assets/wallpapers/vintage-misty-forest.jpg;
@@ -131,8 +131,8 @@
             };
 
             profile = {
-              username = thinkpad.username;
-              hostname = thinkpad.hostname;
+              username = wxct.username;
+              hostname = wxct.hostname;
               shell = "zsh";
             };
 
