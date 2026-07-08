@@ -2,8 +2,6 @@
 {
   programs.git = {
     enable = true;
-    userName = "Roger Coll";
-    userEmail = "rogercoll@protonmail.com";
 
     signing = {
       key = "~/.ssh/id_ed25519.pub";
@@ -16,21 +14,26 @@
       "**/.cursor"
     ];
 
-    aliases = {
-      st = "status";
-      co = "checkout";
-      ci = "commit";
-      df = "diff";
-      br = "branch";
-      brs = "!git for-each-ref --sort='authordate:iso8601' --format='%(authordate:relative)%09%(refname:short)' refs/heads | fzf --tac --bind 'enter:execute(echo {} | rev | cut -f1 | rev | xargs git checkout)+abort,tab:execute-silent(echo {} | rev | cut -f1 | rev | xclip -selection clipboard)+abort'";
-      glo = "log --graph --oneline --decorate --all";
-      gloo = "log --graph --abbrev-commit --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'";
-      l = "log --name-status";
-      purge-branches = "!sh -c 'git branch --merged | grep -v \"^*\" | xargs git branch -d'";
-      um-files = "diff --name-only --diff-filter=U";
-    };
+    settings = {
+      user = {
+        name = "Roger Coll";
+        email = "rogercoll@protonmail.com";
+      };
 
-    extraConfig = {
+      alias = {
+        st = "status";
+        co = "checkout";
+        ci = "commit";
+        df = "diff";
+        br = "branch";
+        brs = "!git for-each-ref --sort='authordate:iso8601' --format='%(authordate:relative)%09%(refname:short)' refs/heads | fzf --tac --bind 'enter:execute(echo {} | rev | cut -f1 | rev | xargs git checkout)+abort,tab:execute-silent(echo {} | rev | cut -f1 | rev | xclip -selection clipboard)+abort'";
+        glo = "log --graph --oneline --decorate --all";
+        gloo = "log --graph --abbrev-commit --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'";
+        l = "log --name-status";
+        purge-branches = "!sh -c 'git branch --merged | grep -v \"^*\" | xargs git branch -d'";
+        um-files = "diff --name-only --diff-filter=U";
+      };
+
       core = {
         editor = "nvim";
         hooksPath = "~/.global_githooks";
@@ -51,7 +54,6 @@
         ui = true;
       };
       gpg.format = "ssh";
-      http.sslCAInfo = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
     };
   };
 }
