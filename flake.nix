@@ -8,12 +8,18 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-alien = {
+      url = "github:thiagokokada/nix-alien";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
     {
       nixpkgs,
       home-manager,
+      nix-alien,
       ...
     }:
     let
@@ -153,11 +159,15 @@
 
       nixosConfigurations.wxct = nixpkgs.lib.nixosSystem {
         inherit system;
+        specialArgs = {
+          nix-alien-pkg = nix-alien.packages.${system}.nix-alien;
+        };
         modules = [
           home-manager.nixosModules.home-manager
           ./hardware-configuration/wxct.nix
           ./nixos/bluetooth.nix
           ./nixos/device.nix
+          ./nixos/elastic-agent.nix
           ./nixos/locale.nix
           ./nixos/network.nix
           ./nixos/pam.nix
