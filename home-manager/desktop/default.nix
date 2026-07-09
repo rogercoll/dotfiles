@@ -40,8 +40,8 @@
       (lib.mkIf (profile == "work") {
 
         home.packages = with pkgs; [
-          postman
           slack
+          google-cloud-sdk
         ];
       })
       {

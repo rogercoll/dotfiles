@@ -131,8 +131,6 @@
               };
             };
 
-            boot.loader.systemd-boot.entryName = "NixOS (pxct)";
-
             desktopEnvironment = {
               displayManager = "none";
               sessions = [ "niri" ];
@@ -202,8 +200,6 @@
                 };
               };
             };
-
-            boot.loader.systemd-boot.entryName = "NixOS (wxct)";
 
             desktopEnvironment = {
               displayManager = "none";
