@@ -93,7 +93,7 @@ in
       # navigation
       cdgh = "cd /home/neck/Documents/github/rogercoll/";
       cdd = "cd /home/neck/Documents/";
-      cddot = "cd /home/neck/Documents/github/rogercoll/dotfiles/";
+      cddot = "cd /shared/github/rogercoll/dotfiles/";
 
       # misc
       mkt = "mkdir nmap scripts targets";
