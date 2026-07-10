@@ -41,6 +41,7 @@
 
         home.packages = with pkgs; [
           slack
+          gh
           google-cloud-sdk
         ];
       })

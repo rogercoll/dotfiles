@@ -50,6 +50,7 @@
       ripgrep
       lsd
       bat
+      bind # dnsutils
     ];
 
     # Default fonts.
