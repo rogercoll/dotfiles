@@ -103,6 +103,8 @@
           ./nixos/tlp.nix
           ./nixos/virtualisation.nix
           {
+            system.nixos.tags = [ "pxct" ];
+
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
@@ -177,6 +179,8 @@
           ./nixos/tlp.nix
           ./nixos/virtualisation.nix
           {
+            system.nixos.tags = [ "wxct" ];
+
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
