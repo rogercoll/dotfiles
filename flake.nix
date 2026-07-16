@@ -179,6 +179,7 @@
                 desktopEnvironment = {
                   wallpaper = ./assets/wallpapers/gruvbox-cyberpunk-girl.png;
                   profile = "personal";
+                  wayBarScreen = "eDP-1";
                 };
               };
             };
@@ -255,6 +256,7 @@
                 desktopEnvironment = {
                   wallpaper = ./assets/wallpapers/vintage-misty-forest.jpg;
                   profile = "work";
+                  wayBarScreen = "eDP-1";
                 };
               };
             };
