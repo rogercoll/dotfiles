@@ -373,6 +373,7 @@ in
       xwayland-satellite
       niri
       wbg
+      wl-clipboard
     ];
 
     home.pointerCursor = {

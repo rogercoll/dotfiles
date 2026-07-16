@@ -51,6 +51,7 @@
       lsd
       bat
       bind # dnsutils
+      lsof
     ];
 
     # Default fonts.

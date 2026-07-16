@@ -13,7 +13,8 @@
       url = "github:thiagokokada/nix-alien";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-  };
+
+};
 
   outputs =
     {
@@ -28,6 +29,7 @@
       pkgs = import nixpkgs {
         inherit system;
       };
+
 
       wxct = {
         username = "neck";
@@ -77,13 +79,55 @@
             '';
           };
 
-        elasticsearch =
+      elasticsearch =
+        let
+          temurin21 = pkgs.javaPackages.compiler.temurin-bin.jdk-21;
+        in
+        pkgs.mkShell {
+          packages = [ temurin21 ];
+          JAVA_HOME = "${temurin21}";
+        };
+
+        opentelemetry-ebpf-profiler =
           let
-            temurin21 = pkgs.javaPackages.compiler.temurin-bin.jdk-21;
+            llvmPkgs = pkgs.llvmPackages;
           in
           pkgs.mkShell {
-            packages = [ temurin21 ];
-            JAVA_HOME = "${temurin21}";
+            packages = [
+              pkgs.go_1_25
+              llvmPkgs.clang            # wrapped — used for CGO / regular C
+              llvmPkgs.clang-unwrapped  # raw binary — used for eBPF compilation
+              llvmPkgs.llvm
+              llvmPkgs.clang-tools
+              pkgs.gcc
+              pkgs.binutils
+              pkgs.musl
+              pkgs.gnumake
+              pkgs.git
+              pkgs.pkg-config
+            ];
+
+            shellHook = ''
+              # Point eBPF Makefile vars at the unwrapped clang so Nix wrapper flags
+              # (e.g. -nostdlibinc) are not injected — they cause -Werror failures.
+              export BPF_CLANG=${llvmPkgs.clang-unwrapped}/bin/clang
+              export BPF_LINK=${llvmPkgs.llvm}/bin/llvm-link
+              export LLC=${llvmPkgs.llvm}/bin/llc
+              export STRIP=${llvmPkgs.llvm}/bin/llvm-strip
+              export CLANG_FORMAT=${llvmPkgs.clang-tools}/bin/clang-format
+
+              # Makefile sets CC=x86_64-linux-gnu-gcc; Nix exposes it as plain gcc.
+              _WRAP="$HOME/.cache/ebpf-profiler-cc-wrappers"
+              mkdir -p "$_WRAP"
+              for _bin in gcc g++ objcopy; do
+                _src="$(command -v $_bin 2>/dev/null)"
+                [ -n "$_src" ] && ln -sf "$_src" "$_WRAP/x86_64-linux-gnu-$_bin"
+              done
+              export PATH="$_WRAP:$PATH"
+              export CGO_ENABLED=0
+              export CC="x86_64-linux-gnu-gcc"
+              export OBJCOPY="x86_64-linux-gnu-objcopy"
+            '';
           };
       };
 
@@ -133,7 +177,7 @@
                 knownHosts = [ pxct ];
 
                 desktopEnvironment = {
-                  wallpaper = ./assets/wallpapers/vintage-misty-forest.jpg;
+                  wallpaper = ./assets/wallpapers/gruvbox-cyberpunk-girl.png;
                   profile = "personal";
                 };
               };
