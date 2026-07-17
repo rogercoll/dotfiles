@@ -247,6 +247,7 @@
                   ./home-manager/zsh.nix
                   ./home-manager/desktop
                   ./home-manager/desktop/brave.nix
+                  ./home-manager/k8s.nix
                 ];
 
                 theme.name = "gruvbox";
