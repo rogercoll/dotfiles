@@ -101,7 +101,6 @@
               llvmPkgs.clang-tools
               pkgs.gcc
               pkgs.binutils
-              pkgs.musl
               pkgs.gnumake
               pkgs.git
               pkgs.pkg-config
@@ -222,7 +221,7 @@
           ./nixos/startup.nix
           ./nixos/desktop
           ./nixos/tlp.nix
-          ./nixos/virtualisation.nix
+          ./nixos/virtualisation-docker.nix
           {
             system.nixos.tags = [ "wxct" ];
 
