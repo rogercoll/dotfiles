@@ -31,18 +31,17 @@
     with config.desktopEnvironment;
     lib.mkMerge [
       (lib.mkIf (profile == "personal") {
-
         home.packages = with pkgs; [
           inkscape
           mpv
         ];
       })
       (lib.mkIf (profile == "work") {
-
         home.packages = with pkgs; [
           slack
           gh
           google-cloud-sdk
+          jetbrains.idea
         ];
       })
       {
