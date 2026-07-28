@@ -88,6 +88,20 @@
           JAVA_HOME = "${temurin21}";
         };
 
+        prodfiler =
+          let
+            muslGcc = pkgs.pkgsCross.musl64.buildPackages.gcc;
+          in
+          pkgs.mkShell {
+            packages = [
+              pkgs.go
+              pkgs.protobuf
+              pkgs.protoc-gen-go
+              pkgs.protoc-gen-go-grpc
+              muslGcc
+            ];
+          };
+
         opentelemetry-ebpf-profiler =
           let
             llvmPkgs = pkgs.llvmPackages;
