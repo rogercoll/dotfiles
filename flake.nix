@@ -114,10 +114,12 @@
               llvmPkgs.llvm
               llvmPkgs.clang-tools
               pkgs.gcc
+              pkgs.glibc.static
               pkgs.binutils
               pkgs.gnumake
               pkgs.git
               pkgs.pkg-config
+              pkgs.luajit # testing luajit unwinder
             ];
 
             shellHook = ''
@@ -140,6 +142,9 @@
               export CGO_ENABLED=0
               export CC="x86_64-linux-gnu-gcc"
               export OBJCOPY="x86_64-linux-gnu-objcopy"
+              # binutils 2.46 is stricter about transitive DSO deps; --copy-dt-needed-entries
+              # re-enables the old behaviour so ld.so -> libc.so.6 resolves automatically.
+              export CGO_LDFLAGS="-Wl,--copy-dt-needed-entries"
             '';
           };
       };

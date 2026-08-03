@@ -52,6 +52,7 @@
       bat
       bind # dnsutils
       lsof
+      jq
     ];
 
     # Default fonts.

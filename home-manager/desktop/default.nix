@@ -50,6 +50,7 @@
           obsidian
           signal-desktop
           spotify
+          drawy
         ];
 
         dconf.settings = {

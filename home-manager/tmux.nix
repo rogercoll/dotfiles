@@ -11,6 +11,8 @@
     plugins = with pkgs.tmuxPlugins; [
       sensible
       vim-tmux-navigator
+      # https://github.com/rose-pine/tmux
+      rose-pine
     ];
 
     extraConfig = ''
@@ -19,9 +21,10 @@
       set-option -sa terminal-overrides ",xterm*:Tc"
 
       # Status bar
-      set -g status-style "bg=${config.theme.colors.surface},fg=${config.theme.colors.foreground}"
-      set -g status-left-style "fg=${config.theme.colors.accent},bold"
-      set -g window-status-current-style "fg=${config.theme.colors.info},bold"
+      # set -g status-style "bg=${config.theme.colors.surface},fg=${config.theme.colors.foreground}"
+      # set -g status-left-style "fg=${config.theme.colors.accent},bold"
+      # set -g window-status-current-style "fg=${config.theme.colors.info},bold"
+      set -g @rose_pine_variant 'main'
 
       set -g pane-base-index 1
       set-window-option -g pane-base-index 1
