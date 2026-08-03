@@ -18,6 +18,11 @@ let
     text = ''
       prefer-no-csd
       input {
+
+          tablet {
+              map-to-output "HDMI-A-1"
+          }
+
           keyboard {
               xkb {
                   layout "us,es"
