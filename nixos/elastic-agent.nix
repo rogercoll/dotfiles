@@ -16,11 +16,14 @@
 #   3. Start the service:
 #      sudo systemctl start elastic-agent
 #
+# Updates are handled automatically by the elastic-agent-updater timer (daily).
+# To trigger a manual update: sudo systemctl start elastic-agent-updater
+#
 # Useful commands:
 #   sudo nix-alien /opt/Elastic/Agent/elastic-agent -- status --output json
 #   sudo nix-alien /opt/Elastic/Agent/elastic-agent -- diagnostics
 
-{ lib, nix-alien-pkg, ... }:
+{ lib, pkgs, nix-alien-pkg, ... }:
 
 {
   environment.systemPackages = [ nix-alien-pkg ];
@@ -43,5 +46,64 @@
     };
 
     wantedBy = [ "multi-user.target" ];
+  };
+
+  systemd.services.elastic-agent-updater = {
+    description = "Update Elastic Agent binary to the latest release";
+
+    serviceConfig = {
+      Type = "oneshot";
+      User = "root";
+      ExecStart = pkgs.writeShellScript "elastic-agent-update" ''
+        set -euo pipefail
+
+        INSTALL_DIR="/opt/Elastic/Agent"
+        VERSION_FILE="$INSTALL_DIR/.nix-managed-version"
+
+        LATEST=$(${pkgs.curl}/bin/curl -sf "https://artifacts-api.elastic.co/v1/versions" | \
+          ${pkgs.jq}/bin/jq -r '[.versions[] | select(test("^[0-9]+\\.[0-9]+\\.[0-9]+$"))] | sort | last')
+
+        CURRENT=$(cat "$VERSION_FILE" 2>/dev/null || echo "0.0.0")
+
+        if [ "$LATEST" = "$CURRENT" ]; then
+          echo "elastic-agent is already up-to-date ($CURRENT)"
+          exit 0
+        fi
+
+        echo "Updating elastic-agent: $CURRENT -> $LATEST"
+        TMP=$(mktemp -d)
+        trap "rm -rf $TMP" EXIT
+
+        DOWNLOAD_URL=$(${pkgs.curl}/bin/curl -sf \
+          "https://artifacts-api.elastic.co/v1/search/$LATEST/elastic-agent" | \
+          ${pkgs.jq}/bin/jq -r \
+            '.packages | to_entries[]
+             | select(.key | test("elastic-agent-[0-9.]+-linux-x86_64\\.tar\\.gz$"))
+             | .value.url' | head -1)
+
+        ${pkgs.curl}/bin/curl -fsSL "$DOWNLOAD_URL" -o "$TMP/agent.tar.gz"
+        ${pkgs.gnutar}/bin/tar --use-compress-program=${pkgs.gzip}/bin/gzip -xf "$TMP/agent.tar.gz" -C "$TMP" --strip-components=1
+
+        systemctl stop elastic-agent
+        rm -rf "''${INSTALL_DIR:?}"/*
+        cp -a "$TMP/." "$INSTALL_DIR/"
+        echo "$LATEST" > "$VERSION_FILE"
+
+        # Force nix-alien to re-resolve dynamic libraries for the new binary
+        rm -rf /root/.cache/nix-alien
+
+        systemctl start elastic-agent
+        echo "elastic-agent updated to $LATEST"
+      '';
+    };
+  };
+
+  systemd.timers.elastic-agent-updater = {
+    description = "Daily check for Elastic Agent updates";
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnCalendar = "daily";
+      Persistent = true;
+    };
   };
 }
