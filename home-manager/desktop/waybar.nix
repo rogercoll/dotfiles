@@ -66,19 +66,9 @@ in
           };
         };
 
-        "custom/hardware-wrap" = {
-          format = "󰘚";
-          tooltip-format = "Resource Usage";
-        };
-
         "group/hardware" = {
           orientation = "horizontal";
-          drawer = {
-            transition-duration = 500;
-            transition-left-to-right = true;
-          };
           modules = [
-            "custom/hardware-wrap"
             "cpu"
             "memory"
             "temperature"

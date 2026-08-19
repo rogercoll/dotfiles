@@ -2,7 +2,7 @@
   home.packages = with pkgs; [
     go
     gopls
-    rustup
+ #  rustup
     gnumake
     gcc
   ];
