@@ -35,6 +35,13 @@
       bind c new-window -c "#{pane_current_path}"
       bind % split-window -h -c "#{pane_current_path}"
       bind '"' split-window -v -c "#{pane_current_path}"
+
+      # Propagate WAYLAND_DISPLAY when reattaching to existing sessions
+      set-option -ga update-environment " WAYLAND_DISPLAY"
+
+      # Copy to system clipboard (Wayland)
+      bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "wl-copy"
+      bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "wl-copy"
     '';
   };
 }
