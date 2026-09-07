@@ -147,6 +147,28 @@
               export CGO_LDFLAGS="-Wl,--copy-dt-needed-entries"
             '';
           };
+
+        otel-arrow = pkgs.mkShell {
+          # Nix's cc wrapper injects -D_FORTIFY_SOURCE, which breaks
+          # tikv-jemalloc-sys's -Werror configure checks under cargo's -O0.
+          hardeningDisable = [ "fortify" ];
+          packages = [
+            # rustup honors the repo's rust-toolchain.toml (pinned rustc +
+            # rustfmt/clippy/rust-analyzer) and auto-installs it on first use.
+            pkgs.rustup
+            pkgs.gcc
+            # proto codegen: cargo xtask compile-proto (Rust) and
+            # proto/generate.sh (Go, needs mockgen via `go install`).
+            pkgs.protobuf
+            pkgs.go
+            pkgs.protoc-gen-go
+            pkgs.protoc-gen-go-grpc
+            pkgs.gnumake
+          ];
+          shellHook = ''
+            export PATH="$HOME/.cargo/bin:$HOME/go/bin:$PATH"
+          '';
+        };
       };
 
       nixosConfigurations.pxct = nixpkgs.lib.nixosSystem {
