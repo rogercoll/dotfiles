@@ -58,10 +58,10 @@
           let
             nodejs = pkgs.stdenv.mkDerivation {
               pname = "nodejs";
-              version = "24.18.0";
+              version = "24.21.0";
               src = pkgs.fetchurl {
-                url = "https://nodejs.org/dist/v24.18.0/node-v24.18.0-linux-x64.tar.gz";
-                hash = "sha256-eDEwmElj23upy9AQierywu+wVcfBaTyUMXS5Z7MFDLg=";
+                url = "https://nodejs.org/dist/v24.21.0/node-v24.21.0-linux-x64.tar.gz";
+                hash = "sha256-bh24fvWLiBnl1UAu/xU2SRsY7djre+5e94l4duiNxf8=";
               };
               nativeBuildInputs = [ pkgs.autoPatchelfHook ];
               buildInputs = with pkgs; [ stdenv.cc.cc.lib ];
@@ -76,6 +76,9 @@
             shellHook = ''
               export NPM_CONFIG_PREFIX="$HOME/.npm-global"
               export PATH="$HOME/.npm-global/bin:$PATH"
+              if ! command -v pnpm &>/dev/null || [[ "$(pnpm --version 2>/dev/null)" != "11.21.0" ]]; then
+                npm install -g pnpm@11.21.0
+              fi
             '';
           };
 

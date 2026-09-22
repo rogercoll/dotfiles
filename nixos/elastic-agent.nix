@@ -51,6 +51,11 @@
   systemd.services.elastic-agent-updater = {
     description = "Update Elastic Agent binary to the latest release";
 
+    unitConfig = {
+      After = "network-online.target";
+      Wants = "network-online.target";
+    };
+
     serviceConfig = {
       Type = "oneshot";
       User = "root";
