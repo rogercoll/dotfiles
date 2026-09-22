@@ -5,5 +5,6 @@
  #  rustup
     gnumake
     gcc
+    bpftools
   ];
 }
