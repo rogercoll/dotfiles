@@ -111,7 +111,7 @@
           in
           pkgs.mkShell {
             packages = [
-              pkgs.go_1_25
+              pkgs.go_1_26
               llvmPkgs.clang            # wrapped — used for CGO / regular C
               llvmPkgs.clang-unwrapped  # raw binary — used for eBPF compilation
               llvmPkgs.llvm
