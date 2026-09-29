@@ -40,8 +40,7 @@
         home.packages = with pkgs; [
           slack
           gh
-          google-cloud-sdk
-          jetbrains.idea
+          (google-cloud-sdk.withExtraComponents [ google-cloud-sdk.components.gke-gcloud-auth-plugin ])
         ];
       })
       {
@@ -51,6 +50,8 @@
           signal-desktop
           spotify
           drawy
+          asciinema # record terminal ascii screen
+          asciinema-agg # record terminal ascii screen
         ];
 
         dconf.settings = {
